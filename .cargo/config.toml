@@ -1,0 +1,5 @@
+[build]
+target = "avr-atmega328pb.json"
+
+[unstable]
+build-std = ["core"]

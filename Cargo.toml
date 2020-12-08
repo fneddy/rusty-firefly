@@ -1,0 +1,31 @@
+[package]
+name = "rusty-firefly"
+version = "0.1.0"
+authors = ["Eduard Stefes <eduard.stefes@ibm.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = ["rt"]
+rt = ["atmega328p-hal/rt"]
+
+[dependencies]
+# atmega328p-hal = { git = "https://github.com/fneddy/avr-hal.git" , branch = "fix_issue_109",  features = ["atmega328pb"] }
+# avr-hal-generic = { git = "https://github.com/fneddy/avr-hal.git", branch = "fix_issue_109" }
+atmega328p-hal = {git = "https://github.com/Rahix/avr-hal.git", features = ["atmega328pb"] }
+avr-hal-generic =  {git = "https://github.com/Rahix/avr-hal.git" }
+panic-halt = "0.2.0"
+nb = "0.1.2"
+ufmt = "0.1.0"
+
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
